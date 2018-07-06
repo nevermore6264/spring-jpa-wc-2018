@@ -1,6 +1,5 @@
 package com.codegym.wc.service;
 
-import com.codegym.wc.model.Country;
 import com.codegym.wc.model.Player;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,5 +15,5 @@ public interface PlayerService {
 
     void delete(Long id);
 
-    Page<Country> findAllByNameContains(String name, Pageable pageable);
+    Page<Player> findAllByNameContains(String name, Pageable pageable);
 }

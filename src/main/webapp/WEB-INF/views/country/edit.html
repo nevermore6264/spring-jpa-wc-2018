@@ -16,7 +16,7 @@
     <th:block th:if="${message}">
         <div th:text="${message}" class="alert alert-success" role="alert">
         </div>
-
+    </th:block>
         <form th:object="${countries}" method="post">
             <input type="hidden" th:field="*{id}">
 

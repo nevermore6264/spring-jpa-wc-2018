@@ -67,6 +67,7 @@ public class CountryController {
     @GetMapping("/{id}/edit")
     public ModelAndView showEditForm(@PathVariable("id") Long id) {
         Country countries = countryService.findById(id);
+        System.out.println(countries.getName());
         if (countries == null) {
             return new ModelAndView("/error404");
         } else {

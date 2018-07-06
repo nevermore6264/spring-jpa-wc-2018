@@ -4,16 +4,16 @@
       layout:decorate="~{/layout.html}">
 <head>
     <meta charset="UTF-8">
-    <title>List Country</title>
+    <title>List Player</title>
 </head>
 <body>
 <section layout:fragment="content">
     <div class="main-header row">
         <div class="col-md-6">
-            <h2 class="title">List Country</h2>
+            <h2 class="title">List Player</h2>
         </div>
         <div class="col-md-6 text-right">
-            <a href="/countries/create" class="btn btn-primary">Create Country</a>
+            <a href="/players/create" class="btn btn-primary">Create Player</a>
         </div>
     </div>
 
@@ -27,29 +27,31 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Group</th>
+            <th>Country</th>
+            <th>Position</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="country : ${countries}">
+        <tr th:each="player : ${players}">
             <td>
-                <a th:text="${country.name}" th:href="@{/country/__${country.id}__}"></a>
+                <a th:text="${player.name}" th:href="@{/player/__${player.id}__}"></a>
             </td>
-            <td th:text="${country.group.name}"></td>
+            <td th:text="${player.country.name}"></td>
+            <td th:text="${player.position}"></td>
             <td>
-                <a th:href="@{/countries/__${country.id}__/edit}">Edit</a>
+                <a th:href="@{/players/__${player.id}__/edit}">Edit</a>
             </td>
             <td>
-                <a th:href="@{/countries/__${country.id}__/delete}" class="text-danger">Delete</a>
+                <a th:href="@{/players/__${player.id}__/delete}" class="text-danger">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
     <div>
-        <a th:href="@{'/countries'(page=${countries.number - 1})}" th:if="${countries.hasPrevious()}">Previous</a>
-        <span th:text="${countries.number + 1}"></span>/<span th:text="${countries.totalPages}"></span>
-        <a th:href="@{'/countries'(page=${countries.number + 1})}" th:if="${countries.hasNext()}">Next</a>
+        <a th:href="@{'/players'(page=${players.number - 1})}" th:if="${players.hasPrevious()}">Previous</a>
+        <span th:text="${players.number + 1}"></span>/<span th:text="${players.totalPages}"></span>
+        <a th:href="@{'/players'(page=${players.number + 1})}" th:if="${players.hasNext()}">Next</a>
     </div>
 </section>

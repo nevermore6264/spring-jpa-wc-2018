@@ -7,17 +7,17 @@ import com.codegym.wc.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PlayerServiceImpl implements PlayerService {
 
     private PlayerRepository playerRepository;
 
+    @Autowired
     public PlayerServiceImpl(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
-
-    @Autowired
-
 
     @Override
     public Player findById(Long id) {
@@ -46,7 +46,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Page<Country> findAllByNameContains(String name, Pageable pageable) {
+    public Page<Player> findAllByNameContains(String name, Pageable pageable) {
         return playerRepository.findAllByNameContains(name, pageable);
     }
 }

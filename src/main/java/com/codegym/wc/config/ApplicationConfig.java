@@ -1,6 +1,8 @@
 package com.codegym.wc.config;
 
+import com.codegym.wc.formatter.CountryFormatter;
 import com.codegym.wc.formatter.GroupFormatter;
+import com.codegym.wc.service.CountryService;
 import com.codegym.wc.service.GroupService;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
@@ -144,6 +146,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new GroupFormatter(applicationContext.getBean(GroupService.class)));
+        registry.addFormatter(new CountryFormatter(applicationContext.getBean(CountryService.class)));
     }
+
 
 }
