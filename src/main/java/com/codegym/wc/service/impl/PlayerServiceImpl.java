@@ -49,5 +49,10 @@ public class PlayerServiceImpl implements PlayerService {
     public Page<Player> findAllByNameContains(String name, Pageable pageable) {
         return playerRepository.findAllByNameContains(name, pageable);
     }
+
+    @Override
+    public Page<Player> findAllByCountry(Country country, Pageable pageable) {
+        return playerRepository.findAllByCountry(country,pageable);
+    }
 }
 

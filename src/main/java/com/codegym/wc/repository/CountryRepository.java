@@ -1,6 +1,7 @@
 package com.codegym.wc.repository;
 
 import com.codegym.wc.model.Country;
+import com.codegym.wc.model.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -11,4 +12,6 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
     Country findByName(String name);
 
     Page<Country> findAllByNameContains(String name, Pageable pageable);
+
+    Page<Country> findAllByGroup(Group group, Pageable pageable);
 }

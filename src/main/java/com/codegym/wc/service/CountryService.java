@@ -1,6 +1,7 @@
 package com.codegym.wc.service;
 
 import com.codegym.wc.model.Country;
+import com.codegym.wc.model.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,5 +17,7 @@ public interface CountryService {
     void delete(Long id);
 
     Page<Country> findAllByNameContains(String name, Pageable pageable);
+
+    Page<Country> findAllByCountry(Group group, Pageable pageable);
 
 }

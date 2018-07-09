@@ -16,4 +16,6 @@ public interface PlayerRepository extends PagingAndSortingRepository<Player, Lon
 
     Page<Player> findAllByNameContains(String name, Pageable pageable);
 
+    Page<Player> findAllByCountry(Country country,Pageable pageable);
+
 }

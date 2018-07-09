@@ -2,8 +2,10 @@ package com.codegym.wc.controller;
 
 import com.codegym.wc.model.Country;
 import com.codegym.wc.model.Group;
+import com.codegym.wc.model.Player;
 import com.codegym.wc.service.CountryService;
 import com.codegym.wc.service.GroupService;
+import com.codegym.wc.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,15 +23,17 @@ import java.util.Optional;
 public class CountryController {
     private GroupService groupService;
     private CountryService countryService;
+    private PlayerService playerService;
 
     @Autowired
-    public CountryController(GroupService groupService, CountryService countryService) {
+    public CountryController(GroupService groupService, CountryService countryService, PlayerService playerService) {
         this.groupService = groupService;
         this.countryService = countryService;
+        this.playerService = playerService;
     }
 
     @GetMapping("")
-    public ModelAndView listCustomers(@RequestParam("string") Optional<String> s, Pageable pageable) {
+    public ModelAndView listCountries(@RequestParam("string") Optional<String> s, Pageable pageable) {
         Page<Country> countries;
         if (s.isPresent()) {
             countries = countryService.findAllByNameContains(s.get(), pageable);
@@ -38,6 +43,20 @@ public class CountryController {
         ModelAndView modelAndView = new ModelAndView("/country/list");
         modelAndView.addObject("countries", countries);
         return modelAndView;
+    }
+
+    @GetMapping("/{id}/views")
+    public ModelAndView showListPlayer(@PathVariable("id") Long id, Pageable pageable) {
+        Country country = countryService.findById(id);
+        if (country == null) {
+            return new ModelAndView("/error404");
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/country/views");
+            Page<Player> players = playerService.findAllByCountry(country, pageable);
+            modelAndView.addObject("country",country);
+            modelAndView.addObject("players", players);
+            return modelAndView;
+        }
     }
 
     @ModelAttribute("groups")

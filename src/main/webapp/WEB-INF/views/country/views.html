@@ -4,7 +4,7 @@
       layout:decorate="~{/layout.html}">
 <head>
     <meta charset="UTF-8">
-    <title>List Player</title>
+    <title>View Player In Country <span th:text="${country.name}"></span></title>
 </head>
 <body>
 <section layout:fragment="content">
@@ -12,44 +12,25 @@
         <div class="col-md-6">
             <h2 class="title">List Player</h2>
         </div>
-        <div class="col-md-6 text-right">
-            <a href="/players/create" class="btn btn-primary">Create Player</a>
-        </div>
     </div>
-
-    <form>
-        Search by name:
-        <input name="string" class="form-control" type="text"/>
-        <input type="submit" value="Search" class="btn btn-primary"/>
-    </form>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Serial</th>
             <th>Name</th>
             <th>Country</th>
             <th>Position</th>
             <th>Club</th>
-            <th>Edit</th>
-            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="player,inter : ${players}">
-            <td th:text="${inter.count}"></td>
+        <tr th:each="player : ${players}">
             <td>
                 <a th:text="${player.name}"></a>
             </td>
             <td th:text="${player.country.name}"></td>
             <td th:text="${player.position}"></td>
             <td th:text="${player.club}"></td>
-            <td>
-                <a th:href="@{/players/__${player.id}__/edit}">Edit</a>
-            </td>
-            <td>
-                <a th:href="@{/players/__${player.id}__/delete}" class="text-danger">Delete</a>
-            </td>
         </tr>
         </tbody>
     </table>

@@ -26,6 +26,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>Serial</th>
             <th>Name</th>
             <th>Group</th>
             <th>Edit</th>
@@ -33,9 +34,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="country : ${countries}">
+        <tr th:each="country , inter:${countries}">
+            <td th:text="${inter.count}"></td>
             <td>
-                <a th:text="${country.name}" th:href="@{/country/__${country.id}__}"></a>
+                <a th:text="${country.name}" th:href="@{/countries/__${country.id}__/views}"></a>
             </td>
             <td th:text="${country.group.name}"></td>
             <td>

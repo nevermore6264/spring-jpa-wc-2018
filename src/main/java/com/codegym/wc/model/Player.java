@@ -14,6 +14,8 @@ public class Player {
 
     private String position;
 
+    private String club;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Country country;
@@ -21,9 +23,10 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, String position, Country country) {
+    public Player(String name, String position, String club, Country country) {
         this.name = name;
         this.position = position;
+        this.club = club;
         this.country = country;
     }
 
@@ -57,5 +60,13 @@ public class Player {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getClub() {
+        return club;
+    }
+
+    public void setClub(String club) {
+        this.club = club;
     }
 }

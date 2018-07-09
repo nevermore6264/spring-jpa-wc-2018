@@ -1,6 +1,7 @@
 package com.codegym.wc.service.impl;
 
 import com.codegym.wc.model.Country;
+import com.codegym.wc.model.Group;
 import com.codegym.wc.repository.CountryRepository;
 import com.codegym.wc.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,10 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Page<Country> findAllByNameContains(String name, Pageable pageable) {
         return countryRepository.findAllByNameContains(name, pageable);
+    }
+
+    @Override
+    public Page<Country> findAllByCountry(Group group, Pageable pageable) {
+        return countryRepository.findAllByGroup(group,pageable);
     }
 }
